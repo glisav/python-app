@@ -1,15 +1,21 @@
-from flask import Flask
+from flask import Flask, jsonify
+import datetime
+import socket
 
-app = Flask (__name__)
+app = Flask(__name__)
 
-@app.route('/')
+@app.route('/api/v1/details')
+def details():
+    return jsonify({
+        'time': datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y"),
+        'hostname': socket.gethostname()
+    })
 
-def hello_world():
-    return 'Hello World'
-
+@app.route('/api/v1/healthz')
+def health():
+    return jsonify({
+        'status': 'up'
+    }), 200
+    
 if __name__ == '__main__':
-    app.run()
-
-
-# '/api/v1/details'
-# '/api/v1/healthz'
+    app.run(host="0.0.0.0")
