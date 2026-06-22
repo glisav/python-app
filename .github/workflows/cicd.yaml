@@ -27,11 +27,21 @@ jobs:
         with:
           push: true
           tags: glisav92/python-app:${{ env.COMMIT_ID }}
+    outputs:
+      commit_id: ${{ env.COMMIT_ID }}
 
   cd:
     needs: ci
     runs-on: self-hosted
     steps:
+
+      - name: Modify values file
+        shell: bash
+        run: |
+          echo ${{needs.ci.outputs.commit_id}}
+          sudo apt install yq -y 
+
+
       - name: Install ArgoCD
         shell: bash
         run: |
