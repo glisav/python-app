@@ -44,13 +44,10 @@ jobs:
         shell: bash
         run: |
           # Login to ArgoCD and sync the application
-          argocd login --port-forward \
-            --port-forward-namespace=argocd \
+          argocd login argocd-server.argocd.svc.cluster.local \
             --insecure \
             --username=admin \
             --password=${{ secrets.ARGOCD_PASSWORD }}
-          argocd app sync python-app \
-            --port-forward \
-            --port-forward-namespace=argocd
+          argocd app sync python-app
 
                     
