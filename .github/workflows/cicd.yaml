@@ -44,7 +44,7 @@ jobs:
         shell: bash
         run: |
           # Login to ArgoCD and sync the application
-          argocd login http://172.17.151.231:30153 \ 
+          argocd login 172.17.151.231:30153 \
             --insecure \
             --username=admin \
             --password=${{ secrets.ARGOCD_PASSWORD }}
