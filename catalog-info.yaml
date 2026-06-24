@@ -5,6 +5,7 @@ metadata:
   description: This is an example of a Flask application.
   annotations:
     github.com/project-slug: glisav/python-app
+    backstage.io/techdocs-ref: dir:.
 spec:
   type: service
   owner: development
